@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Birthday Surprise</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #F0C8D7, #B5C7E7, #C9E3D3, #F8C9A0); /* Soft Rainbow Gradient */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            overflow: hidden;
+        }
+        .container {
+            max-width: 600px;
+            width: 90%;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.3); /* Semi-transparent background */
+            backdrop-filter: blur(10px); /* Glassmorphism effect */
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            opacity: 0;
+            transform: scale(0.8);
+            animation: fadeInScale 1s ease-out forwards;
+        }
+        @keyframes fadeInScale {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        .title {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #4cb2ce; /* Soft lavender color explicitly set */
+            text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.9), 0px 0px 20px rgba(0, 204, 255, 0.8); /* Glowing effect */
+            background: rgba(255, 255, 255, 0.4); /* Slight background to enhance visibility */
+            border-radius: 10px;
+            padding: 10px;
+            opacity: 0;
+            animation: fadeInTitle 3s ease-out forwards;
+        }
+        @keyframes fadeInTitle {
+            0% { opacity: 0; transform: translateY(-50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .gift {
+            margin: 20px 0;
+            padding: 20px;
+            border: 3px solid #F6A8D7; /* Soft Pinkish Border */
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.3); /* Soft semi-transparent */
+            backdrop-filter: blur(8px); 
+            cursor: pointer;
+            transition: 0.3s;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease-out forwards;
+        }
+        .gift:nth-child(1) {
+            animation-delay: 0.4s;
+        }
+        .gift:nth-child(2) {
+            animation-delay: 0.8s;
+        }
+        .gift:nth-child(3) {
+            animation-delay: 1.2s;
+        }
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .gift:hover {
+            background: #F6A8D7; /* Soft Pink Hover */
+            color: white;
+        }
+        .hidden-content {
+            display: none;
+            margin-top: 10px;
+        }
+        img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        audio {
+            width: 100%;
+            margin-top: 10px;
+        }
+        /* Floating Beach Wave Effect */
+        .wave-container {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100px; /* Height of the wave */
+            overflow: hidden;
+        }
+        .wave {
+            position: absolute;
+            bottom: 0;
+            width: 200%;
+            height: 100%;
+            background: url('wave_image.svg'); /* Add a wave SVG image */
+            animation: waveAnimation 5s ease-in-out infinite;
+        }
+        @keyframes waveAnimation {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+        /* Media Queries for responsiveness */
+        @media (max-width: 600px) {
+            .title {
+                font-size: 2.5rem;
+            }
+            .container {
+                width: 85%;
+                padding: 20px;
+            }
+            .gift {
+                padding: 15px;
+                font-size: 1rem;
+            }
+        }
+        @media (max-width: 400px) {
+            .title {
+                font-size: 2rem;
+            }
+            .gift {
+                padding: 12px;
+                font-size: 0.9rem;
+            }
+            audio {
+                width: 100%;
+            }
+        }
+        /* Ensuring the card stays within the screen */
+        html, body {
+            height: 100%;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    <h2 class="title">🎉 Happy Birthday Leena 🎉</h2>
+    <div class="container">
+        <p>Here's a special surprise just for you! Click the gifts below to reveal them. 🎁</p>
+        
+        <div class="gift" onclick="toggleGift(1)">
+            🌊 Click to Reveal Gift 1 (Beach Magic)
+            <div class="hidden-content" id="gift1">
+                <img src="beach_image.jpg" alt="Beach Scene">
+                <audio controls>
+                    <source src="beach_waves.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <p>Just like the waves that never stop touching the shore, our bond is endless and beautiful. 🌊</p>
+            </div>
+        </div>
+        
+        <div class="gift" onclick="toggleGift(2)">
+            🍫 Click to Reveal Gift 2 (Chocolate Delight)
+            <div class="hidden-content" id="gift2">
+                <img src="chocolates.jpg" alt="Chocolates">
+                <audio controls>
+                    <source src="favorite_song1.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <p>Sweet like chocolates, our friendship brings joy in every moment. 🍫🎶</p>
+            </div>
+        </div>
+        
+        <div class="gift" onclick="toggleGift(3)">
+            🎶 Click to Reveal Gift 3 (Melodic Memory)
+            <div class="hidden-content" id="gift3">
+                <img src="music_notes.jpg" alt="Music Notes">
+                <audio controls>
+                    <source src="favorite_song2.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <p>Music is the rhythm of our hearts, and every moment with you is a melody worth cherishing. 🎵💙</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Beach Wave -->
+    <div class="wave-container">
+        <div class="wave"></div>
+    </div>
+
+    <script>
+        function toggleGift(giftNumber) {
+            let gift = document.getElementById("gift" + giftNumber);
+            if (gift.style.display === "block") {
+                gift.style.opacity = 1;
+                gift.style.transition = "opacity 0.5s ease-out";
+                setTimeout(() => {
+                    gift.style.display = "none";
+                }, 300);
+            } else {
+                gift.style.display = "block";
+                gift.style.opacity = 0;
+                setTimeout(() => {
+                    gift.style.opacity = 1;
+                    gift.style.transition = "opacity 0.5s ease-in";
+                }, 100);
+            }
+        }
+    </script>
+</body>
+</html>
