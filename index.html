@@ -210,27 +210,45 @@
 
     <script>
         function toggleGift(giftNumber) {
-            let gift = document.getElementById("gift" + giftNumber);
-            let audio = document.getElementById("audio" + giftNumber);
+    // Close all gifts first
+    let allGifts = document.querySelectorAll(".hidden-content");
+    let allAudios = document.querySelectorAll("audio");
 
-            if (gift.style.display === "block") {
-                gift.style.opacity = 1;
-                gift.style.transition = "opacity 0.5s ease-out";
-                setTimeout(() => {
-                    gift.style.display = "none";
-                    audio.pause(); // Stop the audio when closing the gift
-                }, 300);
-            } else {
-                gift.style.display = "block";
-                gift.style.opacity = 0;
-                setTimeout(() => {
-                    gift.style.opacity = 1;
-                    gift.style.transition = "opacity 0.5s ease-in";
-                    audio.currentTime = 0; // Reset the audio to the beginning
-                    audio.play(); // Play the audio from the beginning
-                }, 100);
-            }
+    allGifts.forEach((gift, index) => {
+        if (index + 1 !== giftNumber) {
+            gift.style.display = "none";
         }
+    });
+
+    allAudios.forEach(audio => {
+        audio.pause();
+        audio.currentTime = 0; // Reset the audio
+    });
+
+    // Open the clicked gift
+    let selectedGift = document.getElementById("gift" + giftNumber);
+    let selectedAudio = document.getElementById("audio" + giftNumber);
+
+    if (selectedGift.style.display === "block") {
+        selectedGift.style.opacity = 1;
+        selectedGift.style.transition = "opacity 0.5s ease-out";
+        setTimeout(() => {
+            selectedGift.style.display = "none";
+            selectedAudio.pause();
+        }, 300);
+    } else {
+        selectedGift.style.display = "block";
+        selectedGift.style.opacity = 0;
+        setTimeout(() => {
+            selectedGift.style.opacity = 1;
+            selectedGift.style.transition = "opacity 0.5s ease-in";
+            selectedAudio.currentTime = 0;
+            selectedAudio.play();
+        }, 100);
+    }
+}
+
+
     </script>
 </body>
 </html>
